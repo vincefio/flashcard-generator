@@ -21,6 +21,32 @@ var woodStockCloze = new ClozeCard('Jimi Hendrix played the famouse version of "
 var blackSabbathCloze = new ClozeCard('Black Sabbath is the title of the first track on Black Sabbath\'s self titled album', 'Black Sabbath')
 var ledZeppelinCloze = new ClozeCard('Led Zeppelin\'s debut album was released in 1968', 1968)
 clozeCardArr.push(firstPresidentCloze, woodStockCloze, blackSabbathCloze, ledZeppelinCloze)
-let x = woodStockCloze.partial()
+//let x = woodStockCloze.partial()
 //console.log(typeof x)
-console.log(x)
+//console.log(x)
+function easy(){
+  console.log('easy game')
+}
+
+function hard(){
+  console.log('hard game')
+}
+
+inquirer.prompt([
+/* Pass your questions in here */
+{
+  name: 'easyOrHard',
+  type: 'list',
+  message: 'Do you want the easy or hard version?',
+  choices: ['easy', 'hard']
+}
+]).then(answers => {
+    console.log('answers ' + JSON.stringify(answers))
+    // Use user feedback for... whatever!!
+    if(answers.easyOrHard == 'easy'){
+      easy()
+    }
+    else if(answers.easyOrHard == 'hard'){
+      hard()
+    }
+});
