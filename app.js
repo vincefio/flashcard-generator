@@ -59,11 +59,15 @@ function easy(){
     }
     else{
       console.log('NO MORE QUESTIONS')
+      console.log('CORRECT ANSWERS: ' + correctAnswers)
       //function to prompt user to play again, then reset game
       resetGame()
       return;
     }
+}
 
+function hard(){
+  console.log('hard game')
 }
 
 function resetGame(){
@@ -76,21 +80,15 @@ function resetGame(){
   ]).then(answers => {
     // Use user feedback for... whatever!!
     if(answers.resetGame){
+      correctAnswers = 0
+      count = 0
       gameStart()
     }
     else{
       console.log('GOODBYE')
-
     }
     //console.log('answers ' + answers.resetGame)
   });
-
-  correctAnswers = 0
-  count = 0
-}
-
-function hard(){
-  console.log('hard game')
 }
 
 function gameStart(){
