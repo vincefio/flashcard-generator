@@ -6,6 +6,9 @@ var inquirer = require('inquirer');
 basicCardArr = []
 clozeCardArr = []
 
+let correctAnswers = 0
+let count = 0
+
 //define a couple of sample questions to work with
 var firstPresident = new BasicCard("Who was the first president of the United States?", "George Washington");
 var woodStock = new BasicCard('Who played the famouse version of "The Star Spangled Banner at Woodstock?"', 'Jimi Hendrix')
@@ -25,14 +28,11 @@ clozeCardArr.push(firstPresidentCloze, woodStockCloze, blackSabbathCloze, ledZep
 gameStart()
 
 function easy(){
-  //console.log('easy game')
-  //loop through basicCardArr, will include inquirer
-    //try if statement
-    let count = 0
+  console.log('count ' + count)
     if(count < basicCardArr.length){
       let question = basicCardArr[count].front
       let answer = basicCardArr[count].back
-      console.log('question ' + question)
+      //console.log('question ' + question)
 
       inquirer.prompt([
         {
@@ -48,12 +48,19 @@ function easy(){
         //check if user answer is the same as answer
         if(answers[answerName].toLowerCase() == answer.toLowerCase()){
           console.log('Correct!')
+          correctAnswers ++
         }else{
           console.log('wrong')
         }
+        console.log('count ' + count)
+        count++
+        easy()
       });
-      //count++
     }
+    else{
+      return;
+    }
+
 }
 
 function hard(){
