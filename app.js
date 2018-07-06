@@ -28,7 +28,7 @@ clozeCardArr.push(firstPresidentCloze, woodStockCloze, blackSabbathCloze, ledZep
 gameStart()
 
 function easy(){
-  console.log('count ' + count)
+  //console.log('count ' + count)
     if(count < basicCardArr.length){
       let question = basicCardArr[count].front
       let answer = basicCardArr[count].back
@@ -52,15 +52,41 @@ function easy(){
         }else{
           console.log('wrong')
         }
-        console.log('count ' + count)
+      //  console.log('count ' + count)
         count++
         easy()
       });
     }
     else{
+      console.log('NO MORE QUESTIONS')
+      //function to prompt user to play again, then reset game
+      resetGame()
       return;
     }
 
+}
+
+function resetGame(){
+  inquirer.prompt([
+    {
+      name: 'resetGame',
+      type: 'confirm',
+      message: 'Play Again?'
+    }
+  ]).then(answers => {
+    // Use user feedback for... whatever!!
+    if(answers.resetGame){
+      gameStart()
+    }
+    else{
+      console.log('GOODBYE')
+
+    }
+    //console.log('answers ' + answers.resetGame)
+  });
+
+  correctAnswers = 0
+  count = 0
 }
 
 function hard(){
