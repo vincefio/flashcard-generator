@@ -19,34 +19,78 @@ var firstPresidentCloze = new ClozeCard("George Washington was the first preside
 //console.log(firstPresidentCloze.cloze);
 var woodStockCloze = new ClozeCard('Jimi Hendrix played the famouse version of "The Star Spangled Banner at Woodstock"', 'Jimi Hendrix')
 var blackSabbathCloze = new ClozeCard('Black Sabbath is the title of the first track on Black Sabbath\'s self titled album', 'Black Sabbath')
-var ledZeppelinCloze = new ClozeCard('Led Zeppelin\'s debut album was released in 1968', 1968)
+var ledZeppelinCloze = new ClozeCard('Led Zeppelin\'s debut album was released in 1968', '1968')
 clozeCardArr.push(firstPresidentCloze, woodStockCloze, blackSabbathCloze, ledZeppelinCloze)
-//let x = woodStockCloze.partial()
-//console.log(typeof x)
-//console.log(x)
+
+gameStart()
+
 function easy(){
   console.log('easy game')
+  //loop through basicCardArr, will include inquirer
+  //for(let i = 0; i < basicCardArr.length; i++){
+    //console.log(basicCardArr[i].front)\
+    //try while loop
+    //try if statement
+    let count = 0
+    if(count < basicCardArr.length){
+      let question = basicCardArr[count].front
+      let answer = basicCardArr[count].back
+      console.log('question ' + question)
+
+      inquirer.prompt([
+        {
+          name: 'basicQuestion' + count,
+          type: 'input',
+          message: question
+        }
+      ]).then(answers => {
+      // Use user feedback for... whatever!!
+      console.log(answer)
+    let answerName = 'basicQuestion' + count
+      console.log('answers ' + JSON.stringify(answers))
+      });
+
+      //count++
+    }
+
+  /*  while(count < basicCardArr.length){
+
+    }
+
+    /*inquirer.prompt([
+      {
+        name: 'basicQuestion',
+        type: 'input',
+        message: question
+      }
+    ]).then(answers => {
+    // Use user feedback for... whatever!!
+    console.log('answers ' + answers)
+    });
+//  }*/
 }
 
 function hard(){
   console.log('hard game')
 }
 
-inquirer.prompt([
-/* Pass your questions in here */
-{
-  name: 'easyOrHard',
-  type: 'list',
-  message: 'Do you want the easy or hard version?',
-  choices: ['easy', 'hard']
+function gameStart(){
+  inquirer.prompt([
+  /* Pass your questions in here */
+  {
+    name: 'easyOrHard',
+    type: 'list',
+    message: 'Do you want the easy or hard version?',
+    choices: ['easy', 'hard']
+  }
+  ]).then(answers => {
+      //console.log('answers ' + JSON.stringify(answers))
+      // Use user feedback for... whatever!!
+      if(answers.easyOrHard == 'easy'){
+        easy()
+      }
+      else if(answers.easyOrHard == 'hard'){
+        hard()
+      }
+  });
 }
-]).then(answers => {
-    console.log('answers ' + JSON.stringify(answers))
-    // Use user feedback for... whatever!!
-    if(answers.easyOrHard == 'easy'){
-      easy()
-    }
-    else if(answers.easyOrHard == 'hard'){
-      hard()
-    }
-});
