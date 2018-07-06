@@ -25,11 +25,8 @@ clozeCardArr.push(firstPresidentCloze, woodStockCloze, blackSabbathCloze, ledZep
 gameStart()
 
 function easy(){
-  console.log('easy game')
+  //console.log('easy game')
   //loop through basicCardArr, will include inquirer
-  //for(let i = 0; i < basicCardArr.length; i++){
-    //console.log(basicCardArr[i].front)\
-    //try while loop
     //try if statement
     let count = 0
     if(count < basicCardArr.length){
@@ -44,30 +41,19 @@ function easy(){
           message: question
         }
       ]).then(answers => {
-      // Use user feedback for... whatever!!
-      console.log(answer)
-    let answerName = 'basicQuestion' + count
-      console.log('answers ' + JSON.stringify(answers))
+        //console.log(answer)
+        let answerName = 'basicQuestion' + count
+        //console.log('answerName ' + answerName)
+        console.log('answers ' + answers[answerName])
+        //check if user answer is the same as answer
+        if(answers[answerName].toLowerCase() == answer.toLowerCase()){
+          console.log('Correct!')
+        }else{
+          console.log('wrong')
+        }
       });
-
       //count++
     }
-
-  /*  while(count < basicCardArr.length){
-
-    }
-
-    /*inquirer.prompt([
-      {
-        name: 'basicQuestion',
-        type: 'input',
-        message: question
-      }
-    ]).then(answers => {
-    // Use user feedback for... whatever!!
-    console.log('answers ' + answers)
-    });
-//  }*/
 }
 
 function hard(){
